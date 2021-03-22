@@ -86,8 +86,8 @@ fi
 
 # Download the cloud init datasource into the cloud-init's "sources" directory.
 echo "installing datasource"
-curl -sSL -o "${PY_MOD_CLOUD_INIT}/sources/DataSourceVMwareGuestInfo.py" \
-  "${REPO_SLUG}/${GIT_REF}/DataSourceVMwareGuestInfo.py"
+curl -sSL -o "${PY_MOD_CLOUD_INIT}/sources/DataSourceXenGuestInfo.py" \
+  "${REPO_SLUG}/${GIT_REF}/DataSourceXenGuestInfo.py"
 
 # Make sure that the datasource can execute without error on this host.
 echo "validating datasource"
