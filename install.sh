@@ -93,24 +93,24 @@ curl -sSL -o "${PY_MOD_CLOUD_INIT}/sources/DataSourceVMwareGuestInfo.py" \
 echo "validating datasource"
 case "${PYTHON_VERSION}" in
 2)
-  python "${PY_MOD_CLOUD_INIT}/sources/DataSourceVMwareGuestInfo.py" 1>/dev/null
+  python "${PY_MOD_CLOUD_INIT}/sources/DataSourceXenGuestInfo.py" 1>/dev/null
   ;;
 3)
-  python3 "${PY_MOD_CLOUD_INIT}/sources/DataSourceVMwareGuestInfo.py" 1>/dev/null
+  python3 "${PY_MOD_CLOUD_INIT}/sources/DataSourceXenGuestInfo.py" 1>/dev/null
   ;;
 esac
 
 # Add the configuration file that tells cloud-init what datasource to use.
 echo "installing config"
 mkdir -p /etc/cloud/cloud.cfg.d
-curl -sSL -o /etc/cloud/cloud.cfg.d/99-DataSourceVMwareGuestInfo.cfg \
-  "${REPO_SLUG}/${GIT_REF}/99-DataSourceVMwareGuestInfo.cfg"
+curl -sSL -o /etc/cloud/cloud.cfg.d/99-DataSourceXenGuestInfo.cfg \
+  "${REPO_SLUG}/${GIT_REF}/99-DataSourceXenGuestInfo.cfg"
 
 # Download program used by ds-identify to determine whether or not the
 # VMwareGuestInfo datasource is useable.
 echo "installing dscheck"
-curl -sSL -o "/usr/bin/dscheck_VMwareGuestInfo" \
-  "${REPO_SLUG}/${GIT_REF}/dscheck_VMwareGuestInfo.sh"
-chmod 0755 "/usr/bin/dscheck_VMwareGuestInfo"
+curl -sSL -o "/usr/bin/dscheck_XenGuestInfo" \
+  "${REPO_SLUG}/${GIT_REF}/dscheck_XenGuestInfo.sh"
+chmod 0755 "/usr/bin/dscheck_XenGuestInfo"
 
 echo "So long, and thanks for all the fish."
