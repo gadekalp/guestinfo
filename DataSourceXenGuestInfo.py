@@ -1,19 +1,6 @@
-# Cloud-Init Datasource for Xen Guestinfo
-#
-#
-# This product is licensed to you under the Apache 2.0 license (the "License").
-# You may not use this product except in compliance with the Apache 2.0 License.
-#
-# This product may include a number of subcomponents with separate copyright
-# notices and license terms. Your use of these subcomponents is subject to the
-# terms and conditions of the subcomponent's license, as noted in the LICENSE
-# file.
-#
-# Authors:   Kalpesh Gade <kalpesh.gade@esds.co.in>
-#
 
 '''
-A cloud init datasource for VMware GuestInfo.
+A cloud init datasource for Xen GuestInfo.
 '''
 
 import base64
@@ -47,7 +34,6 @@ LOG = logging.getLogger(__name__)
 NOVAL = "xenstore-read: couldn't read path vm-data/"
 XENSTORE_READ = find_executable("xenstore-read")
 XENSTORE_WRITE = find_executable("xenstore-write")
-VMX_GUESTINFO = "VMX_GUESTINFO"
 GUESTINFO_EMPTY_YAML_VAL = "---"
 LOCAL_IPV4 = 'local-ipv4'
 LOCAL_IPV6 = 'local-ipv6'
@@ -65,7 +51,7 @@ class NetworkConfigError(Exception):
     pass
 
 
-class DataSourceVMwareGuestInfo(sources.DataSource):
+class DataSourceXenGuestInfo(sources.DataSource):
     '''
     This cloud-init datasource was designed for use with CentOS 7,
     which uses cloud-init 0.7.9. However, this datasource should
@@ -463,7 +449,7 @@ def get_datasource_list(depends):
     '''
     Return a list of data sources that match this set of dependencies
     '''
-    return [DataSourceVMwareGuestInfo]
+    return [DataSourceXenGuestInfo]
 
 
 def get_default_ip_addrs():
